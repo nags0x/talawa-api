@@ -588,10 +588,7 @@ describe("GraphQL schema wiring", () => {
 		);
 
 		const calls = mutationFieldSpy.mock.calls.filter(
-			(call: unknown): call is [string, unknown] =>
-				Array.isArray(call) &&
-				typeof call[0] === "string" &&
-				call[0] === "deleteChatMessage",
+			(call) => call[0] === "deleteChatMessage",
 		);
 		expect(calls.length).toBeGreaterThan(0);
 		const callback = calls[0]?.[1] as (t: BuilderType) => unknown;
